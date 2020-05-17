@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import postController from "../controllers/post";
 
-export class Routes {
+export default class postRoutes {
   public PostController: postController = new postController();
 
   public routes(app: any): void {

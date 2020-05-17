@@ -3,13 +3,17 @@ import * as dotenv from "dotenv";
 import * as bodyParser from "body-parser";
 import * as mongoose from "mongoose";
 
+import postRoutes from "./routes/post";
+
 class App {
   private app: express.Application;
+  private PostRoutes: postRoutes = new postRoutes();
 
   constructor() {
     this.app = express();
     this.config();
     this.connectMongo();
+    this.PostRoutes.routes(this.app);
   }
 
   private config(): void {
