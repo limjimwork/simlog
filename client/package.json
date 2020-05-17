@@ -1,0 +1,25 @@
+{
+  "name": "simlog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [
+    "simlog"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^9.4.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "ts-node": "^8.10.1",
+    "typescript": "^3.9.2"
+  }
+}
