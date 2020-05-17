@@ -1,5 +1,7 @@
 import * as express from "express";
+import * as dotenv from "dotenv";
 import * as bodyParser from "body-parser";
+import * as mongoose from "mongoose";
 
 class App {
   private app: express.Application;
@@ -11,28 +13,25 @@ class App {
   }
 
   private config(): void {
-    const dotenv = require("dotenv");
     dotenv.config();
-    console.log(process.env.MONGO_URI);
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
   }
 
   private connectMongo(): void {
-    const mongoURI = process.env.MONGO_URI;
-    const mongoose = require("mongoose");
+    const MONGO_URI = process.env.MONGO_URI;
     mongoose
-      .connect(mongoURI, {
+      .connect(MONGO_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
         useFindAndModify: false,
       })
-      .then(() => console.log("MongoDB Connected..."))
+      .then(() => console.log("MongoDB Connected."))
       .catch((err) => console.log(err));
   }
 
-  public listen(port: number, cb: () => void): void {
+  public listen(port: string, cb: () => void): void {
     this.app.listen(port, cb);
   }
 }

@@ -1,8 +1,11 @@
 import App from "./app";
+import * as dotenv from "dotenv";
 
-const PORT = 5000;
+dotenv.config();
+
 const app = new App();
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
-  console.log("Express server listening on port " + PORT);
+  console.log("Express server listening on port " + PORT + ".");
 });
