@@ -14,7 +14,7 @@ export default function Header() {
       <div className="center flex">
         <h1>Simlog</h1>
         <div>
-          <Head.Menu className={isOpen ? "open" : null} onClick={onClick}>
+          <Head.Menu className={isOpen ? "open" : undefined} onClick={onClick}>
             <span />
             <span />
             <span />
