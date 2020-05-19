@@ -1,5 +1,11 @@
-function Home() {
-  return <div>hiiiii</div>;
-}
+import Layout from "../components/layout";
+import GlobalStyle from "../styles/global";
 
-export default Home;
+export default function Index() {
+  return (
+    <>
+      <GlobalStyle />
+      <Layout />
+    </>
+  );
+}

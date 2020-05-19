@@ -5,7 +5,6 @@ node_modules
 coverage
 .next
 build
-dist
 
 # misc
 dist
