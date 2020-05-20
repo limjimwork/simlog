@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import Gnb from "./gnb";
+import Gnb from "./gnb";
 import { Head } from "../styles/common";
 
 export default function Header() {
@@ -20,7 +20,7 @@ export default function Header() {
             <span />
             <span />
           </Head.Menu>
-          {/* <Gnb /> */}
+          <Gnb isOpen={isOpen} />
         </div>
       </div>
     </Head.Wrap>

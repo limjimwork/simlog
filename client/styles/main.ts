@@ -6,7 +6,7 @@ export const Info = {
     ${mixin.flexBox}
     ${mixin.justifyContent("center")}
     ${mixin.alignItems("center")}
-    margin: 50px 0;
+    margin: 114px 0 50px;
     .info-photo {
       width: 100px;
       height: 100px;
@@ -22,16 +22,16 @@ export const List = {
     .card {
       padding: 30px 0;
       border-bottom: 1px solid #eee;
-      > h3 {
+      &-title {
         font-size: 22px;
         margin-bottom: 15px;
       }
-      > p {
+      &-text {
         font-size: 16px;
         color: #666;
         margin-bottom: 15px;
       }
-      > div {
+      &-info {
         > span {
           font-size: 12px;
           color: #aaa;

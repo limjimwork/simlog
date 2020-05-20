@@ -1,23 +1,37 @@
 import styled from "styled-components";
 import { mixin } from "./mixin";
 
+interface HeadProps {
+  isOpen: boolean;
+}
+
 export const Head = {
   Wrap: styled.header`
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 90;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 8px;
+    background: #fff;
     > .flex {
       ${mixin.flexBox}
       ${mixin.justifyContent("space-between")}
       ${mixin.alignItems("center")}
       padding: 20px;
       box-sizing: border-box;
+      >h1{
+        font-size: 24px;
+      }
     }
   `,
 
   Menu: styled.div`
+    position: relative;
+    z-index: 110;
     width: 20px;
     height: 15px;
-    position: relative;
-    margin: 10px auto;
+    margin: 0 auto;
     ${mixin.transform("rotate(0deg)")}
     ${mixin.transition("0.5s ease-in-out")}
     cursor: pointer;
@@ -47,6 +61,10 @@ export const Head = {
       top: 12px;
     }
 
+    &.open span {
+      background: #fff;
+    }
+
     &.open span:nth-child(1) {
       top: 6px;
       width: 0%;
@@ -66,5 +84,17 @@ export const Head = {
       width: 0%;
       left: 50%;
     }
+  `,
+
+  Nav: styled.div`
+    position: fixed;
+    top: 0;
+    right: ${(props: HeadProps) => (!!props.isOpen ? "0" : "-100%")};
+    z-index: 100;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.55);
+    ${mixin.transition("0.25s ease-in-out")}
+    opacity: ${(props: HeadProps) => (!!props.isOpen ? "1" : "0")}
   `,
 };
