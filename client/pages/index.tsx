@@ -1,11 +1,11 @@
-import Layout from "../components/layout";
-import GlobalStyle from "../styles/global";
+import Information from "../components/information";
+import MainList from "../components/mainList";
 
 export default function Index() {
   return (
-    <>
-      <GlobalStyle />
-      <Layout />
-    </>
+    <div className="center">
+      <Information />
+      <MainList />
+    </div>
   );
 }

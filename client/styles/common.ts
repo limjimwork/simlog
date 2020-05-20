@@ -8,7 +8,7 @@ export const Head = {
       ${mixin.flexBox}
       ${mixin.justifyContent("space-between")}
       ${mixin.alignItems("center")}
-      padding: 20px 10px;
+      padding: 20px;
       box-sizing: border-box;
     }
   `,

@@ -1,9 +1,14 @@
 import Header from "./header";
 
-export default function Layout() {
+type LayoutProps = {
+  children?: React.ReactNode;
+};
+
+export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <Header />
+      {children}
     </>
   );
 }

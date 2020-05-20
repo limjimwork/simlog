@@ -212,6 +212,17 @@ const GlobalStyle = createGlobalStyle`
       width: 100%;
     }
   }
+
+  .center-content {
+    width: 960px;
+    margin: 0 auto;
+  }
+
+  @media all and (max-width:1200px) {
+    .center-content{
+      width: 85%;
+    }
+  }
 `;
 
 export default GlobalStyle;
