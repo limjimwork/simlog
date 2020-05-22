@@ -31,7 +31,6 @@ export const Head = {
     z-index: 110;
     width: 20px;
     height: 15px;
-    margin: 0 auto;
     ${mixin.transform("rotate(0deg)")}
     ${mixin.transition("0.5s ease-in-out")}
     cursor: pointer;
@@ -89,12 +88,24 @@ export const Head = {
   Nav: styled.div`
     position: fixed;
     top: 0;
-    right: ${(props: HeadProps) => (!!props.isOpen ? "0" : "-100%")};
+    right: 0;
     z-index: 100;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.55);
+    visibility: ${(props: HeadProps) =>
+      !!props.isOpen ? "visible" : "hidden"};
+    opacity: ${(props: HeadProps) => (!!props.isOpen ? "1" : "0")};
     ${mixin.transition("0.25s ease-in-out")}
-    opacity: ${(props: HeadProps) => (!!props.isOpen ? "1" : "0")}
+    >ul {
+      width: 100%;
+      > li {
+        width: 100%;
+        text-align: center;
+      }
+    }
   `,
 };

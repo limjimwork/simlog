@@ -13,16 +13,14 @@ export default function Header() {
     <Head.Wrap>
       <div className="center flex">
         <h1>Simlog</h1>
-        <div>
-          <Head.Menu className={isOpen ? "open" : undefined} onClick={onClick}>
-            <span />
-            <span />
-            <span />
-            <span />
-          </Head.Menu>
-          <Gnb isOpen={isOpen} />
-        </div>
+        <Head.Menu className={isOpen ? "open" : undefined} onClick={onClick}>
+          <span />
+          <span />
+          <span />
+          <span />
+        </Head.Menu>
       </div>
+      <Gnb isOpen={isOpen} />
     </Head.Wrap>
   );
 }

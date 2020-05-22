@@ -2,6 +2,7 @@ import { NextComponentType } from "next";
 import { AppContext, AppInitialProps, AppProps } from "next/app";
 import Layout from "../components/layout";
 import GlobalStyle from "../styles/global";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
   Component,
