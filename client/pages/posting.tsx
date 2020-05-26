@@ -5,7 +5,10 @@ import { EditorState } from "draft-js";
 import { Post } from "../styles/posting";
 
 const Editor = dynamic(
-  (import("react-draft-wysiwyg") as any).then((mod: any) => mod.Editor),
+  async () => {
+    const mod = await import("react-draft-wysiwyg");
+    return mod.Editor;
+  },
   { ssr: false }
 );
 
@@ -14,7 +17,7 @@ type PostProps = {
 };
 
 export default function Posting({ children }: PostProps) {
-  const [editorState, setEditorState] = React.useState(
+  const [editorState, setEditorState] = React.useState(() =>
     EditorState.createEmpty()
   );
 
