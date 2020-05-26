@@ -11,7 +11,7 @@ export const Head = {
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 90;
+    z-index: 100;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 8px;
     background: #fff;
     > .flex {
@@ -28,7 +28,7 @@ export const Head = {
 
   Menu: styled.div`
     position: relative;
-    z-index: 110;
+    z-index: 120;
     width: 20px;
     height: 15px;
     ${mixin.transform("rotate(0deg)")}
@@ -89,7 +89,7 @@ export const Head = {
     position: fixed;
     top: 0;
     right: 0;
-    z-index: 100;
+    z-index: 110;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -105,6 +105,37 @@ export const Head = {
       > li {
         width: 100%;
         text-align: center;
+      }
+    }
+  `,
+};
+
+export const Btn = {
+  Confirm: styled.div`
+    text-align: center;
+    margin: 25px 0;
+    > button {
+      height: 35px;
+      line-height: 35px;
+      font-size: 16px;
+      border-radius: 4px;
+      padding: 0 20px;
+      &.cancle {
+        margin-right: 10px;
+        border: 1px solid #f1f1f1;
+        background-color: #fff;
+        &:hover {
+          background-color: #f1f1f1;
+        }
+      }
+      &.confirm {
+        color: #fff;
+        border: 1px solid #2671c4;
+        background-color: #2671c4;
+        &:hover {
+          border: 1px solid #2361a5;
+          background-color: #2361a5;
+        }
       }
     }
   `,
