@@ -105,6 +105,13 @@ export const Head = {
       > li {
         width: 100%;
         text-align: center;
+        a {
+          display: block;
+          font-size: 24px;
+          text-transform: capitalize;
+          color: #fff;
+          padding: 15px 0;
+        }
       }
     }
   `,

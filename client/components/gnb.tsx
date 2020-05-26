@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Head } from "../styles/common";
 
 type gnbProps = {
@@ -8,9 +9,16 @@ export default function Gnb({ isOpen }: gnbProps) {
   return (
     <Head.Nav isOpen={isOpen}>
       <ul>
-        <li>메뉴1</li>
-        <li>메뉴2</li>
-        <li>메뉴3</li>
+        <li>
+          <Link href="/project">
+            <a>project</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/dev">
+            <a>dev</a>
+          </Link>
+        </li>
       </ul>
     </Head.Nav>
   );

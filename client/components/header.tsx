@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 import Gnb from "./gnb";
 import { Head } from "../styles/common";
 
@@ -12,7 +13,11 @@ export default function Header() {
   return (
     <Head.Wrap>
       <div className="center flex">
-        <h1>Simlog</h1>
+        <h1>
+          <Link href="/">
+            <a>Simlog</a>
+          </Link>
+        </h1>
         <Head.Menu className={isOpen ? "open" : undefined} onClick={onClick}>
           <span />
           <span />
