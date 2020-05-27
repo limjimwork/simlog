@@ -3,7 +3,15 @@ const Schema = mongoose.Schema;
 
 const articleSchema = new Schema(
   {
+    writer: {
+      type: String,
+      required: true,
+    },
     title: {
+      type: String,
+      required: true,
+    },
+    category: {
       type: String,
       required: true,
     },

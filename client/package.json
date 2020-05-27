@@ -30,6 +30,7 @@
     "@types/react-draft-wysiwyg": "^1.13.0",
     "@types/styled-components": "^5.1.0",
     "babel-plugin-styled-components": "^1.10.7",
+    "dotenv": "^8.2.0",
     "typescript": "^3.9.3"
   }
 }

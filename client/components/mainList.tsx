@@ -6,7 +6,7 @@ export default function MainList() {
     <List.Wrap className="center-content">
       <ul>
         <li className="card">
-          <Link href="/detail/[id]" as={`/detail/:id`}>
+          <Link href="/project/[id]" as={`/project/:id`}>
             <a>
               <h3 className="card-title">제목</h3>
               <p className="card-text">본문 일부</p>

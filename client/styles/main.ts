@@ -13,6 +13,26 @@ export const Info = {
       margin-right: 50px;
       border-radius: 50%;
       box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 4px 0px;
+      ${mixin.bgi("images", "merry", "jpeg")}
+    }
+    .info-text {
+      h2{
+        font-size: 22px;
+        margin-bottom: 10px;
+      }
+      .job {
+        font-size: 18px;
+        margin-bottom: 3px;
+      }
+      .skill {
+        font-size: 14px;
+        color: #888;
+        margin-bottom: 10px;
+      }
+      .link {
+        font-size: 16px;
+        text-decoration:underline;
+      }
     }
   `,
 };

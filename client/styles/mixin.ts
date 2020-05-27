@@ -1,5 +1,5 @@
 import { css } from "styled-components";
-const imagePath = "/assets/img";
+const imagePath = "/static";
 
 export const mixin = {
   flexBox: css`
@@ -103,6 +103,8 @@ export const mixin = {
   bgi: (path: string, imageName: string, type = "png") => ({
     "background-image": `url(${imagePath}/${path}/${imageName}.${type})`,
     "background-repeat": "no-repeat",
+    "background-size": "cover",
+    "background-position": "50% 50%",
   }),
 
   ellipsis: (lines = 1) => {

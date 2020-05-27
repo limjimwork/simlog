@@ -3,13 +3,16 @@ import Article from "../models/article";
 
 const router = Router();
 
-router.get("/get", (req: Request, res: Response) => {
-  res.status(200).send({
-    message: "GET request successful.",
+router.get("/getArticle", (req: Request, res: Response) => {
+  let category = req.query.category;
+
+  Article.find({}).exec((err, article) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).json({ success: true, article });
   });
 });
 
-router.post("/post", (req: Request, res: Response) => {
+router.post("/postArticle", (req: Request, res: Response) => {
   let newPost = new Article(req.body);
   newPost.save((err, post) => {
     if (err) {
