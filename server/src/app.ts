@@ -20,6 +20,7 @@ class App {
   }
 
   private configureRoutes(): void {
+    this.app.use("/api/user", require("./routes/user"));
     this.app.use("/api/article", require("./routes/article"));
   }
 

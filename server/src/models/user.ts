@@ -6,6 +6,22 @@ import bcrypt = require("bcrypt");
 const saltRounds = 10;
 const Schema = mongoose.Schema;
 
+interface IUser extends mongoose.Document {
+  email: string;
+  password: string;
+  token: string;
+  tokenExp: number;
+
+  comparePassword(
+    plainPassword: string,
+    cb: (err: Error, isMatch?: boolean) => void
+  ): void;
+  generateToken(cb: (err: Error, user?: IUser) => void): void;
+}
+interface IUserModel extends mongoose.Model<IUser> {
+  findByToken(token: string, cb: (err: Error, user?: IUser) => void): void;
+}
+
 const userSchema = new Schema({
   email: {
     type: String,
@@ -26,7 +42,7 @@ const userSchema = new Schema({
 
 // 비밀번호가 변경될 경우 암호화
 // pre는 특정 동작 이전에 할 행동을 정의, "save"이전
-userSchema.methods.pre("save", function (next: NextFunction) {
+userSchema.pre<IUser>("save", function (next: NextFunction) {
   var user = this;
 
   if (user.isModified("password")) {
@@ -44,7 +60,10 @@ userSchema.methods.pre("save", function (next: NextFunction) {
 });
 
 // 비밀번호가 일치하는지 확인
-userSchema.methods.comparePassword = function (plainPassword: string, cb: any) {
+userSchema.methods.comparePassword = function (
+  plainPassword: string,
+  cb: (err: Error, isMatch?: boolean) => void
+) {
   bcrypt.compare(plainPassword, this.password, function (err, isMatch) {
     if (err) return cb(err);
     cb(null, isMatch);
@@ -52,27 +71,29 @@ userSchema.methods.comparePassword = function (plainPassword: string, cb: any) {
 };
 
 // 토큰 생성
-userSchema.methods.generateToken = function (cb: any) {
-  var user = this;
-  var token = jwt.sign(user._id.toHexString(), "secret");
-  // var oneHour = moment().add(1, "hour").valueOf();
+userSchema.methods.generateToken = function (
+  cb: (err: Error, user?: IUser) => void
+) {
+  var user: IUser = this;
+  var token = jwt.sign(user._id.toHexString(), "secret", { expiresIn: "1h" });
 
-  // user.tokenExp = oneHour;
   user.token = token;
-  user.save(function (err: Error, user: string) {
+  user.save(function (err: Error, user: IUser) {
     if (err) return cb(err);
     cb(null, user);
   });
 };
 
 // statics는 모델에 바로 쓸 수 있는 메소드
-userSchema.statics.findByToken = function (token: string, cb: any) {
-  var user = this;
-
+// 유효성 검사
+userSchema.statics.findByToken = function (
+  token: string,
+  cb: (err: Error, user?: IUser) => void
+) {
   jwt.verify(token, "secret", function (err, decode) {
-    user.findOne({ _id: decode, token: token }, function (
+    User.findOne({ _id: decode, token: token }, function (
       err: Error,
-      user: any
+      user: IUser
     ) {
       if (err) return cb(err);
       cb(null, user);
@@ -80,6 +101,6 @@ userSchema.statics.findByToken = function (token: string, cb: any) {
   });
 };
 
-let User = mongoose.model("User", userSchema);
+const User = mongoose.model<IUser, IUserModel>("User", userSchema);
 
 export default User;
