@@ -2,6 +2,8 @@ import * as express from "express";
 import * as dotenv from "dotenv";
 import * as bodyParser from "body-parser";
 import * as mongoose from "mongoose";
+import * as cors from "cors";
+import * as multer from "multer";
 
 class App {
   private app: express.Application;
@@ -17,9 +19,17 @@ class App {
     dotenv.config();
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
+    this.app.use(multer().array());
   }
 
   private configureRoutes(): void {
+    this.app.use(
+      cors({
+        origin: "http://localhost:3000",
+        credentials: true,
+        preflightContinue: true,
+      })
+    );
     this.app.use("/api/user", require("./routes/user"));
     this.app.use("/api/article", require("./routes/article"));
   }

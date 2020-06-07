@@ -23,6 +23,9 @@ export const Head = {
       >h1{
         font-size: 24px;
       }
+      >.btn-login{
+        color: #fff;
+      }
     }
   `,
 
@@ -112,6 +115,26 @@ export const Head = {
           color: #fff;
           padding: 15px 0;
         }
+      }
+    }
+  `,
+};
+
+export const Login = {
+  Wrap: styled.div`
+    margin-top: 110px;
+    text-align: center;
+    > form {
+      display: inline-block;
+      > * {
+        display: block;
+        margin-bottom: 15px;
+      }
+      > input {
+        border-bottom: 1px solid #333;
+      }
+      > button {
+        border: 1px solid #333;
       }
     }
   `,

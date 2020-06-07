@@ -18,6 +18,7 @@ interface IUser extends mongoose.Document {
   ): void;
   generateToken(cb: (err: Error, user?: IUser) => void): void;
 }
+
 interface IUserModel extends mongoose.Model<IUser> {
   findByToken(token: string, cb: (err: Error, user?: IUser) => void): void;
 }
@@ -75,7 +76,7 @@ userSchema.methods.generateToken = function (
   cb: (err: Error, user?: IUser) => void
 ) {
   var user: IUser = this;
-  var token = jwt.sign(user._id.toHexString(), "secret", { expiresIn: "1h" });
+  var token = jwt.sign(user._id.toHexString(), "secret");
 
   user.token = token;
   user.save(function (err: Error, user: IUser) {

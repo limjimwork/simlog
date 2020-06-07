@@ -6,22 +6,23 @@ const router = Router();
 //             User
 //=================================
 
-router.get("/login", (req: Request, res: Response) => {
+router.post("/signin", (req: Request, res: Response) => {
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user)
-      return res.json({
+      return res.status(400).json({
         loginSuccess: false,
-        message: "Auth failed, email not found",
+        message: "Auth failed, email not found.",
       });
 
     user.comparePassword(req.body.password, (err, isMatch) => {
       if (!isMatch)
-        return res.json({ loginSuccess: false, message: "Wrong password" });
+        return res
+          .status(400)
+          .json({ loginSuccess: false, message: "Wrong password." });
 
       user.generateToken((err, user) => {
         if (err) return res.status(400).send(err);
-        res.cookie("w_authExp", user.tokenExp);
-        res.cookie("w_auth", user.token).status(200).json({
+        res.cookie("_token", user.token).status(200).json({
           loginSuccess: true,
           userId: user._id,
         });

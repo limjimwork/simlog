@@ -18,6 +18,9 @@ export default function Header() {
             <a>Simlog</a>
           </Link>
         </h1>
+        <Link href="/signin">
+          <a className="btn-login">로그인</a>
+        </Link>
         <Head.Menu className={isOpen ? "open" : undefined} onClick={onClick}>
           <span />
           <span />
