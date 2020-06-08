@@ -24,7 +24,6 @@ router.post("/signin", (req: Request, res: Response) => {
         if (err) return res.status(400).send(err);
         res.cookie("_token", user.token).status(200).json({
           loginSuccess: true,
-          userId: user._id,
         });
       });
     });
@@ -34,7 +33,7 @@ router.post("/signin", (req: Request, res: Response) => {
 // router.get("/logout", auth, (req, res) => {
 //   User.findOneAndUpdate(
 //     { _id: req.user._id },
-//     { token: "", tokenExp: "" },
+//     { token: "" },
 //     (err, doc) => {
 //       if (err) return res.json({ success: false, err });
 //       return res.status(200).send({

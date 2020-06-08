@@ -19,7 +19,7 @@ class App {
     dotenv.config();
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
-    this.app.use(multer().array());
+    this.app.use(multer().array("form"));
   }
 
   private configureRoutes(): void {

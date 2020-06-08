@@ -10,7 +10,6 @@ interface IUser extends mongoose.Document {
   email: string;
   password: string;
   token: string;
-  tokenExp: number;
 
   comparePassword(
     plainPassword: string,
@@ -35,9 +34,6 @@ const userSchema = new Schema({
   },
   token: {
     type: String,
-  },
-  tokenExp: {
-    type: Number,
   },
 });
 
