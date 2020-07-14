@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
-import { EditorState } from "draft-js";
-// import ConfirmBtn from "../components/confirmBtn";
+import { EditorState, convertToRaw } from "draft-js";
+import ConfirmBtn from "../components/confirmBtn";
 import { Post } from "../styles/posting";
 
 const Editor = dynamic(
@@ -17,9 +17,35 @@ type PostProps = {
 };
 
 export default function Posting({ children }: PostProps) {
-  const [editorState, setEditorState] = React.useState(() =>
+  const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
+
+  const [uploadImages, setUploadImages] = useState([{}]);
+
+  const onEditorStateChange = (editorState: EditorState) => {
+    setEditorState(editorState);
+  };
+
+  const onClickCancle = () => {
+    console.log("취소");
+  };
+
+  const onClickConfirm = () => {
+    console.log("등록", convertToRaw(editorState.getCurrentContent()));
+  };
+
+  const uploadImageCallBack = (file: any) => {
+    const imageObject = {
+      file: file,
+      localSrc: URL.createObjectURL(file),
+    };
+    uploadImages.push(imageObject);
+    setUploadImages(uploadImages);
+    return new Promise((resolve, reject) => {
+      resolve({ data: { link: imageObject.localSrc } });
+    });
+  };
 
   return (
     <Post.Wrap>
@@ -42,7 +68,7 @@ export default function Posting({ children }: PostProps) {
       <div className="editor-section">
         <Editor
           editorState={editorState}
-          onEditorStateChange={setEditorState}
+          onEditorStateChange={onEditorStateChange}
           wrapperClassName={"editor-wrapper"}
           editorClassName={"editor-editor"}
           placeholder={"내용을 입력하세요."}
@@ -55,10 +81,17 @@ export default function Posting({ children }: PostProps) {
             textAlign: { inDropdown: true },
             link: { inDropdown: true },
             history: { inDropdown: true },
+            image: {
+              uploadCallback: uploadImageCallBack,
+              inputAccept: "image/gif,image/jpeg,image/jpg,image/png,image/svg",
+            },
           }}
         />
       </div>
-      {/* <ConfirmBtn /> */}
+      <ConfirmBtn
+        onClickCancle={onClickCancle}
+        onClickConfirm={onClickConfirm}
+      />
     </Post.Wrap>
   );
 }

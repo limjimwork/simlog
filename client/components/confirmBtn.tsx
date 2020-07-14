@@ -1,8 +1,8 @@
 import { Btn } from "../styles/common";
 
 type btnProps = {
-  onClickCancle: void;
-  onClickConfirm: void;
+  onClickCancle: () => void;
+  onClickConfirm: () => void;
 };
 
 export default function ConfirmBtn({
@@ -11,8 +11,12 @@ export default function ConfirmBtn({
 }: btnProps) {
   return (
     <Btn.Confirm>
-      <button className="cancle">취소</button>
-      <button className="confirm">등록</button>
+      <button className="cancle" onClick={onClickCancle}>
+        취소
+      </button>
+      <button className="confirm" onClick={onClickConfirm}>
+        등록
+      </button>
     </Btn.Confirm>
   );
 }

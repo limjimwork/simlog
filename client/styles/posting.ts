@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const Post = {
   Wrap: styled.div`
     margin: 114px auto 25px;
-    width: 817px;
+    max-width: 857px;
+    padding: 0 20px;
     box-sizing: border-box;
     .category-section {
       position: relative;
@@ -43,6 +44,9 @@ export const Post = {
         border: 1px solid #f1f1f1 !important;
         border-radius: 2px !important;
         box-sizing: border-box;
+      }
+      .rdw-history-dropdown {
+        margin-bottom: 6px;
       }
       img {
         width: auto;
