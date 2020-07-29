@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { mixin } from "./mixin";
 
 interface HeadProps {
-  isOpen: boolean;
+  isOpen?: boolean;
 }
 
 export const Head = {
@@ -88,7 +88,7 @@ export const Head = {
     }
   `,
 
-  Nav: styled.div`
+  Nav: styled.div<HeadProps>`
     position: fixed;
     top: 0;
     right: 0;
@@ -99,9 +99,8 @@ export const Head = {
     width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.55);
-    visibility: ${(props: HeadProps) =>
-      !!props.isOpen ? "visible" : "hidden"};
-    opacity: ${(props: HeadProps) => (!!props.isOpen ? "1" : "0")};
+    visibility: ${(props) => (!!props.isOpen ? "visible" : "hidden")};
+    opacity: ${(props) => (!!props.isOpen ? "1" : "0")};
     ${mixin.transition("0.25s ease-in-out")}
     >ul {
       width: 100%;
@@ -147,7 +146,7 @@ export const Btn = {
     > button {
       height: 35px;
       line-height: 35px;
-      font-size: 16px;
+      font-size: 14px;
       border-radius: 4px;
       padding: 0 20px;
       &.cancle {

@@ -7,11 +7,11 @@ const articleSchema = new Schema(
       type: String,
       required: true,
     },
-    title: {
+    category: {
       type: String,
       required: true,
     },
-    category: {
+    title: {
       type: String,
       required: true,
     },
